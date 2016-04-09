@@ -279,9 +279,11 @@ Example: (evil-map visual \"<\" \"<gv\")"
                        (call-interactively ',(lookup-key evil-normal-state-map key))
                        (execute-kbd-macro ,(substring seq 1)))
                   (execute-kbd-macro ,seq))))))
+
       ;; Keep the region active when shifting
-      (evil-map visual "<" "<gv")
-      (evil-map visual ">" ">gv")
+      (when dotspacemacs-retain-visual-mode-on-shift
+        ((evil-map visual "<" "<gv")
+         (evil-map visual ">" ">gv")))
 
       (defun spacemacs/evil-smart-doc-lookup ()
         "Version of `evil-lookup' that attempts to use

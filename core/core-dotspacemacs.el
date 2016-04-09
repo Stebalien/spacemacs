@@ -144,6 +144,9 @@ with `:' and Emacs commands are executed with `<leader> :'.")
 (defvaralias 'dotspacemacs-remap-Y-to-y$ 'evil-want-Y-yank-to-eol
   "If non nil `Y' is remapped to `y$'.")
 
+(defvar dotspacemacs-retain-visual-mode-on-shift nil
+  "If non nil `>' is remapped to `>gv' and `<' is remapped to `<gv' in visual mode.")
+
 (defvar dotspacemacs-default-layout-name "Default"
   " Name of the default layout.")
 
