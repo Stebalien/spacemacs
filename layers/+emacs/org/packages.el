@@ -113,7 +113,14 @@
     :commands (orgtbl-mode)
     :init
     (progn
+      (defun evil-org-insert-heading (&optional arg)
+        "Insert new heading."
+        (interactive "P")
+        (org-insert-heading-after-current)
+        (evil-append 1))
+
       (spacemacs|require 'org)
+
       (setq org-clock-persist-file (concat spacemacs-cache-directory
                                            "org-clock-save.el")
             org-id-locations-file (concat spacemacs-cache-directory
@@ -336,14 +343,14 @@ Will work on both org-mode and any mode that accepts plain html."
         "id" 'org-insert-drawer
         "ie" 'org-set-effort
         "if" 'org-footnote-new
-        "ih" 'org-insert-heading
+        "ih" 'evil-org-insert-heading
         "iH" 'org-insert-heading-after-current
         "ii" 'org-insert-item
         "iK" 'spacemacs/insert-keybinding-org
         "il" 'org-insert-link
         "in" 'org-add-note
         "ip" 'org-set-property
-        "is" 'org-insert-subheading
+        "is" 'evil-org-insert-subheading
         "it" 'org-set-tags-command
         ;; region manipulation
         "xb" (spacemacs|org-emphasize spacemacs/org-bold ?*)
