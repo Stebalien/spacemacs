@@ -12,18 +12,19 @@
 (defvar spacemacs--after-display-system-init-list '()
   "List of functions to be run after the display system is initialized.")
 
-(defadvice server-create-window-system-frame
-    (after spacemacs-init-display activate)
-  "After Emacs server creates a frame, run functions queued in
+(with-eval-after-load 'server
+  (defadvice server-create-window-system-frame
+      (after spacemacs-init-display activate)
+    "After Emacs server creates a frame, run functions queued in
 `SPACEMACS--AFTER-DISPLAY-SYSTEM-INIT-LIST' to do any setup that needs to have
 the display system initialized."
-  (progn
-    (dolist (fn (reverse spacemacs--after-display-system-init-list))
-      (funcall fn))
-    (ad-disable-advice 'server-create-window-system-frame
-                       'after
-                       'spacemacs-init-display)
-    (ad-activate 'server-create-window-system-frame)))
+    (progn
+      (dolist (fn (reverse spacemacs--after-display-system-init-list))
+        (funcall fn))
+      (ad-disable-advice 'server-create-window-system-frame
+                         'after
+                         'spacemacs-init-display)
+      (ad-activate 'server-create-window-system-frame))))
 
 (defmacro spacemacs|do-after-display-system-init (&rest body)
   "If the display-system is initialized, run `BODY', otherwise,
