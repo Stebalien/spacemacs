@@ -62,6 +62,7 @@ transient/
 url/*
 var/
 workspace
+eln-*/
 
 # Private directory
 /doc/COMMUNITY.org
