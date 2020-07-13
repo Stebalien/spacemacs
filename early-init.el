@@ -23,4 +23,6 @@
 ;; needed nor loaded on those versions.
 (setq
  package-enable-at-startup nil
- load-prefer-newer t)
+ load-prefer-newer t
+ comp-deferred-compilation t)
+ 
